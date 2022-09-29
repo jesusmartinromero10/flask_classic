@@ -8,7 +8,19 @@ header, footer {
 body {
 min-height: 100vh;
 display: grid;
-grid-template-rows: auto 50px 1fr auto;
+grid-template-rows: auto 50px 1fr 0 1 auto;
 margin: 0;
+
+}
+article {
+    margin: 0;
+    padding: 0;
+    
+    background-color: yellow;
+    
+}
+article ul li {
+    color: red;
+    list-style: none;
 
 }

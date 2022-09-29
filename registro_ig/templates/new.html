@@ -2,24 +2,33 @@
 {% block content %}
   <h1>Agregar nuevo movimiento</h1> 
 
-  <form action="/new/{{  }}" method="POST">
+  <form action="/new" method="POST">
 
     <label for="date">Fecha: </label>
-    <input type="date" name="'date" required id="date">
+    <input type="date" name="date" required id="date" value="{{ dataForm.date }}">
 
     <label for="concept">Concepto: </label>
-    <input type="text" name="'concept" id="concept">
+    <input type="text" name="concept" id="concept" value="{{ dataForm.concept }}">
 
     <label for="quantity">Cantidad: </label>
-    <input type="number" name="'date" id="quantity">
+    <input type="number" name="quantity" id="quantity" placeholder="Introduzca ingreso o gasto" value="{{ dataForm.quantity }}">
 
     <input type="submit" value="Aceptar">
 
 
   </form>
+  <article class="errores">
+    <ul>
+        
+        {% for error in msgError %}
+        <li><span class="material-symbols-outlined">
+          warning
+          </span>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</article>
 
-
-
+<a href="/">Volver</a>
 
 
 {% endblock %}

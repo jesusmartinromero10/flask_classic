@@ -13,18 +13,20 @@ def index():
 def new():
     if request.method == "GET":
         
-        return render_template('new.html', pageTitle = "Alta_Nuevo")
+        return render_template('new.html', pageTitle = "Alta_Nuevo", dataForm = "")
     else:
         errores = validarFormulario(request.form)
 
-        if errores == 0:
-            insert(request.form['date'],
+        if errores == []:
+            insert([request.form['date'],
                     request.form['concept'],
-                    request.form['quantity'])
+                    request.form['quantity']
+                    ])
+            
             
             return redirect(url_for('index'))
         else:
-            return render_template('new.html', pageTitle='Alta_nuevo', msgError = errores)
+            return render_template('new.html', pageTitle='Alta_nuevo', msgError = errores, dataForm = dict(request.form))
     
 
 def validarFormulario(camposFormularios):
@@ -32,8 +34,9 @@ def validarFormulario(camposFormularios):
 
     hoy = date.today().isoformat()
     if camposFormularios['date'] > hoy:
-        errores.append['Introduce fecha que no sea futuro']
+        errores.append('Introduce fecha que no sea futuro')
     if camposFormularios['concept'] == "":
-        errores.append["Introduce un concepto"]
-    if camposFormularios['quantity'] == "" or float(camposFormularios) == 0:
-        errores.append['No se puede introducir un valor igual a 0 o sin valor']
+        errores.append("Introduce un concepto")
+    if camposFormularios['quantity'] == "" or camposFormularios == 0:
+        errores.append('No se puede introducir un valor igual a 0 o sin valor')
+    return errores
