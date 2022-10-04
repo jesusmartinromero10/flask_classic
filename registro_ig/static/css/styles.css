@@ -24,3 +24,12 @@ article ul li {
     list-style: none;
 
 }
+
+.cantidad {
+    color: red;
+    
+}
+p.error{
+    color: red;
+    font-weight: bold;
+}

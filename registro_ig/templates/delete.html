@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+   <h1>Borrado de Ingreso-Gasto</h1>
+    <table>
+        <tr>
+            <td >Fecha </td>
+            <td>{{ movement.date }}</td>
+        </tr>
+        <tr>
+            <td>Concepto</td>
+            <td>{{ movement.concept }}</td>
+        </tr>
+        <tr>
+            <td>Cantidad</td>
+            <td>{{ "%.2f" | format(movement.quantity) }} €</td>
+        </tr>
+    </table>
+    <form action="/delete/{{ movement.id }}" method="POST">
+        <input type="submit" value="Aceptar">
+        <a href="/" role = "button">Cancelar</a>
+    </form>
+    
+{% endblock %}

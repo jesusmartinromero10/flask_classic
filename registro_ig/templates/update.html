@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Agregar nuevo movimiento</h1>
-  
+  <h1>Agregar nuevo movimiento</h1> 
 
-  <form action="/new" method="POST">
+  <form action="/update/{{ mod[0] }}" method="POST">
 
     {{ el_formulario.csrf_token }}
 
     {{ el_formulario.date.label }}
-    {{ el_formulario.date }}
+    {{ el_formulario.date (value = mod[1]) }}
     {% if el_formulario.date.errors %}
         {% for error in el_formulario.date.errors %}
            <p class="error">{{ error }}</p>
@@ -17,7 +16,7 @@
 
     
     {{ el_formulario.concept.label }}
-    {{ el_formulario.concept (placeholder="Introduce un concepto de ingreso o gasto") }}
+    {{ el_formulario.concept (value = mod[2]) }}
     {% if el_formulario.concept.errors %}
         {% for error in el_formulario.concept.errors %}
           <p class="error">{{ error }}</p>
@@ -25,7 +24,7 @@
     {% endif %}
 
     {{ el_formulario.quantity.label }}
-    {{ el_formulario.quantity (placeholder="Euros gastados o ingresados") }}
+    {{ el_formulario.quantity (value = mod[3]) }}
     {% if el_formulario.quantity.errors %}
         {% for error in el_formulario.quantity.errors %}
           <p class="error">{{ error }}</p>
